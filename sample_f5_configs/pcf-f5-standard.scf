@@ -1,0 +1,926 @@
+#TMSH-VERSION: 12.1.2
+
+cli admin-partitions {
+    update-partition Common
+}
+apm report default-report {
+    report-name sessionReports/sessionSummary
+    user /Common/admin
+}
+auth user admin {
+    description "Admin User"
+    encrypted-password $6$IIhG.HP4$kmWDt3Czta4rK5Ct4rYgaGSCDtqkMbAIgCUUdIDaQ/W8HTVHy7F1EZmSM.KYO9sdxDTuggaAGHj7QO/8f9rB80
+    partition-access {
+        all-partitions {
+            role admin
+        }
+    }
+    shell bash
+}
+auth user f5hubblelcdadmin {
+    description f5hubblelcdadmin
+    encrypted-password O3bad8WQTUGBBhpJtjUgbt6gluzFM0ha
+    partition-access {
+        all-partitions {
+            role admin
+        }
+    }
+    shell none
+}
+auth user mglynn {
+    description mglynn
+    encrypted-password $6$g5xyMuOe$T0uSN/cbtiENpC3Vbrfa3Xy9OGNJdu8sIFl.w7M6hjZaM4vmmH7dV1X4hAe3CEvsbmVtqknWQy5S.53Z0DYIL.
+    partition-access {
+        all-partitions {
+            role guest
+        }
+    }
+    shell tmsh
+}
+auth user root {
+    description root
+    encrypted-password $6$MgRYNSCd$5hkwlvnUZXvJfK5pUcmxP./VtQIn1CEoEGNil9B5NCtUOV4K8BVCbpKwPz0O0WFv0zm8t7J0XTM33YSVZ.xS61
+    shell bash
+}
+cm cert /Common/dtca-bundle.crt {
+    cache-path /config/filestore/files_d/Common_d/trust_certificate_d/:Common:dtca-bundle.crt_37137_2
+    certificate-text "-----BEGIN CERTIFICATE-----
+MIIDnTCCAoWgAwIBAgIDCSzmMA0GCSqGSIb3DQEBBQUAMC4xLDAqBgNVBAMTIzA2
+YzU3YjIzLTQwZDEtNDE1OC1iYjhjMDA1MDU2OGRlM2U0MB4XDTE3MDIxMDE4NTk0
+NVoXDTI3MDIwODE4NTk0NVowLjEsMCoGA1UEAxMjMDZjNTdiMjMtNDBkMS00MTU4
+LWJiOGMwMDUwNTY4ZGUzZTQwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIB
+AQDS+l/bwiYzhCmjyNAKGGwlfcwmjDyphmcP0svbJHWlNa30n1tsj+7jJovBPi6b
+qPtHJ0cgDvmQhvDqY5gOe8rW0LCt4rpASmpTn31Hh4DQFhhFZ4DUzKcpB+Q27dGj
+U1OFqjW8HxtCr7faCa/TRUCwCg0bn1yMSszJAcBN/s6EplG+ifi7H7TJes/ZvQ3D
+E+WnfM3KRFMzrfQbAa59ATHNfG88hD3dPYXCmI3Q5hLN8tQO+H3ZH53hsk7+mzSG
+11tK7R21ZAgmPlhRiu40ea2L+X0XAuIh31x+9TApAHDukWu1KN2/KG5GpJL/aCIV
+qYsQ6yaVulBBgdpUtorUSF0lAgMBAAGjgcMwgcAwJAYDVR0RBB0wG4IZZjUuaGFh
+cy03OC5wZXoucGl2b3RhbC5pbzAPBgNVHRMBAf8EBTADAQH/MA4GA1UdDwEB/wQE
+AwIBtjAdBgNVHQ4EFgQUUgI0VFrDDgzuoXhsc1nMA6mQK8EwWAYDVR0jBFEwT4AU
+UgI0VFrDDgzuoXhsc1nMA6mQK8GhMqQwMC4xLDAqBgNVBAMTIzA2YzU3YjIzLTQw
+ZDEtNDE1OC1iYjhjMDA1MDU2OGRlM2U0ggMJLOYwDQYJKoZIhvcNAQEFBQADggEB
+AL/h4v4N60iHK0otdypxyzx855xtyysm9gGeXnKb4uxj9SrEt+6qTUMn66GtMNrk
+esI6603r02aPYl/6ibIp3uxwYmQlgvt4O2zQOSSD0R/r8+Vl56DGgU84/gLorKNF
+UOxWAHL5mRdanWP5W78V1bnGjBk/JgeM8oHFGei9A3S0MdK18kxSsACCFGot25A0
+d1B60oz5RsC2lrRKQoSDDxV3tk2SqbcU7Bu5Cp2ePup3MAQkydFlK6shWnT9Frq1
+qPrug/YfnoA5HGb9ZgVZRicBZei5Hc/Tbsm3/j47KmzgKuV+Rs/kYKPIRSeohx18
+GTUVKofqzFOu++0Cm9uGDJ4=
+-----END CERTIFICATE-----
+"
+    checksum SHA1:1314:446099e7a8c3e0143d34471d448483941d52a516
+    revision 2
+}
+cm cert /Common/dtca.crt {
+    cache-path /config/filestore/files_d/Common_d/trust_certificate_d/:Common:dtca.crt_37133_2
+    certificate-text "-----BEGIN CERTIFICATE-----
+MIIDnTCCAoWgAwIBAgIDCSzmMA0GCSqGSIb3DQEBBQUAMC4xLDAqBgNVBAMTIzA2
+YzU3YjIzLTQwZDEtNDE1OC1iYjhjMDA1MDU2OGRlM2U0MB4XDTE3MDIxMDE4NTk0
+NVoXDTI3MDIwODE4NTk0NVowLjEsMCoGA1UEAxMjMDZjNTdiMjMtNDBkMS00MTU4
+LWJiOGMwMDUwNTY4ZGUzZTQwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIB
+AQDS+l/bwiYzhCmjyNAKGGwlfcwmjDyphmcP0svbJHWlNa30n1tsj+7jJovBPi6b
+qPtHJ0cgDvmQhvDqY5gOe8rW0LCt4rpASmpTn31Hh4DQFhhFZ4DUzKcpB+Q27dGj
+U1OFqjW8HxtCr7faCa/TRUCwCg0bn1yMSszJAcBN/s6EplG+ifi7H7TJes/ZvQ3D
+E+WnfM3KRFMzrfQbAa59ATHNfG88hD3dPYXCmI3Q5hLN8tQO+H3ZH53hsk7+mzSG
+11tK7R21ZAgmPlhRiu40ea2L+X0XAuIh31x+9TApAHDukWu1KN2/KG5GpJL/aCIV
+qYsQ6yaVulBBgdpUtorUSF0lAgMBAAGjgcMwgcAwJAYDVR0RBB0wG4IZZjUuaGFh
+cy03OC5wZXoucGl2b3RhbC5pbzAPBgNVHRMBAf8EBTADAQH/MA4GA1UdDwEB/wQE
+AwIBtjAdBgNVHQ4EFgQUUgI0VFrDDgzuoXhsc1nMA6mQK8EwWAYDVR0jBFEwT4AU
+UgI0VFrDDgzuoXhsc1nMA6mQK8GhMqQwMC4xLDAqBgNVBAMTIzA2YzU3YjIzLTQw
+ZDEtNDE1OC1iYjhjMDA1MDU2OGRlM2U0ggMJLOYwDQYJKoZIhvcNAQEFBQADggEB
+AL/h4v4N60iHK0otdypxyzx855xtyysm9gGeXnKb4uxj9SrEt+6qTUMn66GtMNrk
+esI6603r02aPYl/6ibIp3uxwYmQlgvt4O2zQOSSD0R/r8+Vl56DGgU84/gLorKNF
+UOxWAHL5mRdanWP5W78V1bnGjBk/JgeM8oHFGei9A3S0MdK18kxSsACCFGot25A0
+d1B60oz5RsC2lrRKQoSDDxV3tk2SqbcU7Bu5Cp2ePup3MAQkydFlK6shWnT9Frq1
+qPrug/YfnoA5HGb9ZgVZRicBZei5Hc/Tbsm3/j47KmzgKuV+Rs/kYKPIRSeohx18
+GTUVKofqzFOu++0Cm9uGDJ4=
+-----END CERTIFICATE-----
+"
+    checksum SHA1:1314:446099e7a8c3e0143d34471d448483941d52a516
+    revision 2
+}
+cm cert /Common/dtdi.crt {
+    cache-path /config/filestore/files_d/Common_d/trust_certificate_d/:Common:dtdi.crt_37129_2
+    certificate-text "-----BEGIN CERTIFICATE-----
+MIIDkDCCAnigAwIBAgIDBUtTMA0GCSqGSIb3DQEBBQUAMC4xLDAqBgNVBAMTIzA2
+YzU3YjIzLTQwZDEtNDE1OC1iYjhjMDA1MDU2OGRlM2U0MB4XDTE3MDIxMDE4NTk0
+NloXDTI3MDIwODE4NTk0NlowJDEiMCAGA1UEAxMZZjUuaGFhcy03OC5wZXoucGl2
+b3RhbC5pbzCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAK4TTQwfIFEM
+QBLjjs7R2dhMTtWFhHK7uPGtzQ5k8YLqXdX3jhyaGMrs4TevPwOKu/RIthn5hcks
+CVnNXu0NQx9ZGjHNI1AjQm4VrVJRfeNcusGX1FePk3viuKnEKSd4cZzLCQbw8CRj
+BVwX95TchkkV5cUhrilOaahm3UCfbiwsZfOfqQ+xQiiFVWH39LNZwaAce+s276cr
+WtHK3DWXRnYTednVPHGpL/ET57odqu+tItHJAGfl1XgHUyB7XznCckvCQaPosiy4
+kKla3oPGEcfiIpnpRoWrUhl3RohFQy2xeYDhSZiyHHNDHUlNnvci4y/B4UT7SVzb
+X5kGAMc5Rp8CAwEAAaOBwDCBvTAkBgNVHREEHTAbghlmNS5oYWFzLTc4LnBlei5w
+aXZvdGFsLmlvMAwGA1UdEwEB/wQCMAAwDgYDVR0PAQH/BAQDAgWgMB0GA1UdDgQW
+BBQPPJCP4Z11/kalLrWRtZgV1fRDnDBYBgNVHSMEUTBPgBRSAjRUWsMODO6heGxz
+WcwDqZArwaEypDAwLjEsMCoGA1UEAxMjMDZjNTdiMjMtNDBkMS00MTU4LWJiOGMw
+MDUwNTY4ZGUzZTSCAwks5jANBgkqhkiG9w0BAQUFAAOCAQEAhovRL64PX3pFsLoJ
+nMASyRlvqMffJZxWtxE4jIMQywje6SfFufnPzHXGVnm3euauUJ3uAIp9zCDH+E+E
+DSE+4s2qBAM2Df6IWOZzYtz/Zrlr+KvDgpRk5b/O/yDoifShOCGVnICCGlwaQSVJ
+xjARuUhF14VLJHO+zTZNaqCqMDjp1txn4CKBqD7q/YV6BwXo+lCdyfB0wsCVMimA
+P69jSRhJ9ePjj3hErWS/K10gsdNCJnT2dLozLzIijoOJXoOwJQdWPKr/f2BIa0Gp
+AXAM1oSd4RWbNw+EQ05G2gDF+JlZPrqJVfSfftWUFyMKPqMt7fkxMMjpdAmP9Qn7
+nboUIA==
+-----END CERTIFICATE-----
+"
+    checksum SHA1:1298:10edd86cc9e04c9c30eb6d4a38f066ca8601d232
+    revision 2
+}
+cm device /Common/f5.haas-78.pez.pivotal.io {
+    active-modules { "BIG-IP, VE Trial|XGEUKHJ-ENEGRPV|Rate Shaping|External Interface and Network HSM, VE|SDN Services, VE|SSL, Forward Proxy, VE|ASM, VE|Max Compression, VE|Crytpo Offload, VE, Tier 1 (25M - 200M)|BIG-IP VE, Multicast Routing|SSL, VE|DNS (1K QPS), VE|Routing Bundle, VE|AFM, VE|DNSSEC|Anti-Virus Checks|Base Endpoint Security Checks|Firewall Checks|Network Access|Secure Virtual Keyboard|APM, Web Application|Machine Certificate Checks|Protected Workspace|Remote Desktop|App Tunnel|CGN, BIG-IP VE, AFM ONLY|PSM, VE" }
+    base-mac 00:50:56:8d:e3:e4
+    build 0.0.249
+    cert /Common/dtdi.crt
+    chassis-id 420d3473-cd7c-9beb-0969a312da5f
+    edition Final
+    hostname f5.haas-78.pez.pivotal.io
+    key /Common/dtdi.key
+    management-ip 172.10.0.10
+    marketing-name "BIG-IP Virtual Edition"
+    platform-id Z100
+    product BIG-IP
+    self-device true
+    time-zone America/Los_Angeles
+    version 12.1.2
+}
+cm device-group /Common/device_trust_group {
+    auto-sync enabled
+    devices {
+        /Common/f5.haas-78.pez.pivotal.io { }
+    }
+    hidden true
+    network-failover disabled
+}
+cm device-group /Common/gtm {
+    devices {
+        /Common/f5.haas-78.pez.pivotal.io { }
+    }
+    hidden true
+    network-failover disabled
+}
+cm key /Common/dtca.key {
+    cache-path /config/filestore/files_d/Common_d/trust_certificate_key_d/:Common:dtca.key_37135_2
+    certificate-text "-----BEGIN PRIVATE KEY-----
+MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDS+l/bwiYzhCmj
+yNAKGGwlfcwmjDyphmcP0svbJHWlNa30n1tsj+7jJovBPi6bqPtHJ0cgDvmQhvDq
+Y5gOe8rW0LCt4rpASmpTn31Hh4DQFhhFZ4DUzKcpB+Q27dGjU1OFqjW8HxtCr7fa
+Ca/TRUCwCg0bn1yMSszJAcBN/s6EplG+ifi7H7TJes/ZvQ3DE+WnfM3KRFMzrfQb
+Aa59ATHNfG88hD3dPYXCmI3Q5hLN8tQO+H3ZH53hsk7+mzSG11tK7R21ZAgmPlhR
+iu40ea2L+X0XAuIh31x+9TApAHDukWu1KN2/KG5GpJL/aCIVqYsQ6yaVulBBgdpU
+torUSF0lAgMBAAECggEAGQPTutA1zFTmxQMp25CSvg1A1+83wBft/1vMjPKxOkH3
+mrIMWn5kYi1vU53GU/GAvaqEDeKIp6DATuI5JLp7zeWXlT51O+s22SxnY8RGuyVr
+gksn5NNRHJXRcsvW1+ko1YfdcC02A72m7GTKop+q8FR4wmYuSHoT9t9MyFKmdOa2
+RkD06nXJHfTh42/iOjMj4RgUTa3gvKK8H/4hllcDkgF/n5S4vpyg+M/59ftrMUU0
+86b1nU8gWswhvCKPtd4t10R+TP8ONMqiU8d4BLlGehIljpZp1iFBGlgk/dv1vHBu
+BVJAEsXzmpZnAYtEtcmqXwYNDrSOLulJuOd4+CE2zwKBgQD2A9qYNWeJML1u0Lle
+WoE4P32/XFQRfsCu/V1aV5mRdHLJXqwWA1n66rE1+0FeNHO16wXUVqRiGFKyaSlY
+twT6GUZ33rtWDXHjdKOXM1XnA0fsHBSNdF114RBjNo51avRHS98j3HI6qpDLN5lM
+jLZZfCrUA4vbmvQQUIT3zy1m8wKBgQDbinqPeMxc9Pg5YBAZnuuX97y5ibBUVjXn
+xlhrp0VmO2KDWpzTx9sF9hEPIESdg+u6/yroOnSW9vhPqiQYx3DfKU4KKB7Yvxxg
+nvk8WHN6yCAXzOQjAvbMhV/bITqZPf7PMMMAI+jGwfr8ce1uh7wvw0nufeZoi1vO
+luROQpdhhwKBgQDVPYXuROwXiD3KnfTvCffTr4Tpp7fe6kVN6KNQOXoNECimzv7O
+nd0Slvc/2SdR5pkdaDfHU8pslLSpnGmQUiNoPRxNrqwm7MR46ZMa7g5ZjQh8aeKO
+sfyIvqqbtKBKuog+fE9QIDaLD2kuHGUuaxFsAyqEVwaVNXyz33dB7TxnbQKBgDnZ
+WoQ1q3wPHN1Zf8SQiLnpkLQ/INSIRvoE3MW5NONEYKgGF28Cqab/eO1IbmwnF9WV
+aUP6K0CgYTv0tEBHRWm4Y5Tvj3lDmoGnQjtxfzRqSXKcDb1gCZJIzsJaFivNFziX
+O7rsu2isMquUhaDraV4YkoGicTU5C377abtpdqQ/AoGAd2pmM8fdTXU/CWGkbQ7t
+r5gtVG0X/aJNx3Os/V9Dv2HSz1/ChaBTBb2awFwqC/dwwy8/ydAx6YiB/1ded1Ih
+jmVWRbHQ7nC9izELlBPsz2ChfPqgUkG5OOh7YSMR7AvJNpZTphNKasFHnrQV/TR8
++NdHUy9AVoCuDAtK4nCtLVA=
+-----END PRIVATE KEY-----
+"
+    checksum SHA1:1704:ef95b645dba9cd21dea1d230f447525c8b6a8df3
+    revision 2
+}
+cm key /Common/dtdi.key {
+    cache-path /config/filestore/files_d/Common_d/trust_certificate_key_d/:Common:dtdi.key_37131_2
+    certificate-text "-----BEGIN PRIVATE KEY-----
+MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCuE00MHyBRDEAS
+447O0dnYTE7VhYRyu7jxrc0OZPGC6l3V944cmhjK7OE3rz8Dirv0SLYZ+YXJLAlZ
+zV7tDUMfWRoxzSNQI0JuFa1SUX3jXLrBl9RXj5N74ripxCkneHGcywkG8PAkYwVc
+F/eU3IZJFeXFIa4pTmmoZt1An24sLGXzn6kPsUIohVVh9/SzWcGgHHvrNu+nK1rR
+ytw1l0Z2E3nZ1TxxqS/xE+e6HarvrSLRyQBn5dV4B1Mge185wnJLwkGj6LIsuJCp
+Wt6DxhHH4iKZ6UaFq1IZd0aIRUMtsXmA4UmYshxzQx1JTZ73IuMvweFE+0lc21+Z
+BgDHOUafAgMBAAECggEAJbXls5IMqLIsMUtd1R0uAccqLuSBWG+ldanOqechUNif
+4moCPdz+MPvXIH6U+pnz9MxJst/U5UtmbS9p+JWubFybqZ1EoKg6zGlixloEGRyu
+EqFnLV7btvNbSN/HgJb9mdd8SaYph+BxuU0x4+xQJQYa5DVTKvyjNAmwtb60Gdpa
+Hjm/gewZMjSIwvkr3UlT8Zd5O9/2fGqAY4wx9aVCgbg9EGYcILFjeSsaFK6JlRgP
+cLD2/7QK+j9plXeUCoBF416/PsMC7kZ7o6Qg3ooq/TUIsZQPJ7Oz3dhTdwPZp60s
+anZmWrqFPWwVBMFFgr9M81592QgACKBFz2k9o0LLgQKBgQDx2CaCC58XCsDTNxhh
+YEHZfmZGKKLXLyDVmY+HfItiNICrJIZid7CRKXQ8EMqu0a3x9RIQnzb5nPJT4Flm
+Mnpj92IJbsv8AjhsP4/3cxMYyv/Aj4f7a11tH/V5K+aqzNeQ2uIWlCKbRzOt0Xnc
+DStn4K9LM8dvRW4DKyzt39dsHwKBgQC4Q6+A8bRCUTBYc6rGDCnjjZzhDTKaRQx2
+V8j8LHz48o5CKRM6+HlqRX/JYYe9Yj4uyLXlfChCtdlqYHyt5kBbzHZQnNwg/M+J
+KUDq5NQDt/7Bz99vuo0n+m6jZ52KIhG0giLHRzmFzqSjCBmJszxpdGzyRSKz8/Q6
+RkAMyorVgQKBgDBLKI1pgrBYPl8vLlgrn5qt6gBylun/iD//NTEqBq9qqpMCbS92
+lTS3oXVpKQA18NVTSfM1yAWaeK2VLGUDCXuy58nYbTV6wAelvbr9KMAXsXCjeNUV
+AIgNDLjQsnRDCXzsqJ83n52AX2qDXSE7JALPVFHhGh83LxvE4Gjz/RGjAoGASx7d
+B/aCBJ9Q1F6jeoYu9aQgFufof1gzEnQLbjM858kLEhHo0xvFc/vNcu4eBqlsrGoL
+LfmF+FxmvKWFbuf1yPb8LTUl0RUADu0QmDKd9L4oUB9M+iHVtjy0qk1tvojRKwP6
+5b81xkVOfWCp+Kdns55RZBunYDHOmYtWRWC1ZQECgYBU+NWA3CRlFTMr3MnPuDze
+lOF0J9wrhYxxS4TiweVddhV8bJd/E+hfKCZxze4UlSeY/yS6HE3S93KXx5zZDEC2
+KfZ6doj405CdXwzQ0PME3Jg+J0/cCYBFfahDmHM50GQNBHnJgQqj61yaejXdWy/Y
+AGLoXJAsi3hRL9yjbogPjA==
+-----END PRIVATE KEY-----
+"
+    checksum SHA1:1704:63d4a9e0c363a36018cc34fff4a1ccadee0030eb
+    revision 2
+}
+cm traffic-group /Common/traffic-group-1 {
+    unit-id 1
+}
+cm traffic-group /Common/traffic-group-local-only { }
+cm trust-domain /Common/Root {
+    ca-cert /Common/dtca.crt
+    ca-cert-bundle /Common/dtca-bundle.crt
+    ca-devices { /Common/f5.haas-78.pez.pivotal.io }
+    ca-key /Common/dtca.key
+    guid 0c753a5b-34d5-4226-8e100050568de3e4
+    status standalone
+    trust-group /Common/device_trust_group
+}
+gtm global-settings metrics {
+    metrics-collection-protocols { icmp }
+}
+gtm global-settings metrics-exclusions {
+    addresses none
+}
+ltm default-node-monitor {
+    rule none
+}
+ltm node /Common/diego-brain-01 {
+    address 10.193.96.47
+}
+ltm node /Common/diego-brain-02 {
+    address 10.193.96.48
+}
+ltm node /Common/gorouter-01 {
+    address 10.193.96.46
+}
+ltm node /Common/gorouter-02 {
+    address 10.193.96.45
+}
+ltm node /Common/mysql-proxy-01 {
+    address 10.193.96.51
+}
+ltm node /Common/mysql-proxy-02 {
+    address 10.193.96.52
+}
+ltm node /Common/tcp-router-01 {
+    address 10.193.96.49
+}
+ltm node /Common/tcp-router-02 {
+    address 10.193.96.50
+}
+ltm pool /Common/go_routers {
+    description "PCF Go Routers"
+    load-balancing-mode least-connections-member
+    members {
+        /Common/gorouter-01:80 {
+            address 10.193.96.46
+        }
+        /Common/gorouter-02:80 {
+            address 10.193.96.45
+        }
+    }
+    monitor min 1 of { /Common/pcf_gorouter_mon }
+}
+ltm pool /Common/mysql_proxy_ert {
+    description "PCF ERT Mysql Proxy"
+    load-balancing-mode least-connections-member
+    members {
+        /Common/mysql-proxy-01:3306 {
+            address 10.193.96.51
+        }
+        /Common/mysql-proxy-02:3306 {
+            address 10.193.96.52
+        }
+    }
+    monitor /Common/pcf_mysqlproxy_ert_mon
+}
+ltm pool /Common/pcf_diego_brains {
+    description "PCF containers SSH proxy"
+    load-balancing-mode least-connections-node
+    members {
+        /Common/diego-brain-01:2222 {
+            address 10.193.96.47
+        }
+        /Common/diego-brain-02:2222 {
+            address 10.193.96.48
+        }
+    }
+    monitor /Common/pcf_diegobrains_mon
+}
+ltm pool /Common/pcf_tcp_routers {
+    description "PCF TCP Routers"
+    load-balancing-mode least-connections-node
+    members {
+        /Common/tcp-router-01:0 {
+            address 10.193.96.49
+        }
+        /Common/tcp-router-02:0 {
+            address 10.193.96.50
+        }
+    }
+    monitor /Common/pcf_tcprouter_mon
+}
+ltm rule /Common/cf_xforward_for {
+    when HTTP_REQUEST {
+HTTP::header insert X-Forwarded-For [IP::remote_addr]
+}
+}
+ltm rule /Common/cf_xforward_proto {
+    when HTTP_REQUEST {
+
+HTTP::header insert X-Forwarded-Proto "https"
+
+}
+}
+ltm rule /Common/cf_xforward_proto_http {
+    when HTTP_REQUEST {
+
+HTTP::header insert X-Forwarded-Proto "http"
+
+}
+}
+ltm virtual /Common/pcf_http {
+    description "Cloud Foundry App HTTP Access"
+    destination /Common/10.193.96.4:80
+    ip-protocol tcp
+    mask 255.255.255.255
+    pool /Common/go_routers
+    profiles {
+        /Common/http { }
+        /Common/tcp-lan-optimized { }
+    }
+    rules {
+        /Common/cf_xforward_proto_http
+        /Common/cf_xforward_for
+    }
+    source 0.0.0.0/0
+    source-address-translation {
+        type automap
+    }
+    translate-address enabled
+    translate-port enabled
+    vlans {
+        /Common/cf_access_vlan
+    }
+    vlans-enabled
+}
+ltm virtual /Common/pcf_https {
+    description "Cloud Foundry API & App SSL Access"
+    destination /Common/10.193.96.4:443
+    ip-protocol tcp
+    mask 255.255.255.255
+    pool /Common/go_routers
+    profiles {
+        /Common/cf_client_ssl {
+            context clientside
+        }
+        /Common/http { }
+        /Common/tcp-lan-optimized { }
+    }
+    rules {
+        /Common/cf_xforward_for
+        /Common/cf_xforward_proto
+    }
+    source 0.0.0.0/0
+    source-address-translation {
+        type automap
+    }
+    translate-address enabled
+    translate-port enabled
+    vlans {
+        /Common/cf_access_vlan
+    }
+    vlans-enabled
+}
+ltm virtual /Common/pcf_mysql_ert {
+    description "ERT Mysql Proxy"
+    destination /Common/10.193.96.8:3306
+    ip-protocol tcp
+    mask 255.255.255.255
+    pool /Common/mysql_proxy_ert
+    profiles {
+        /Common/tcp-lan-optimized { }
+    }
+    source 0.0.0.0/0
+    source-address-translation {
+        type automap
+    }
+    translate-address enabled
+    translate-port enabled
+    vlans {
+        /Common/cf_access_vlan
+    }
+    vlans-enabled
+}
+ltm virtual /Common/pcf_ssh_proxy {
+    description "Diego Brains SSH-Proxy"
+    destination /Common/10.193.96.4:2222
+    ip-protocol tcp
+    mask 255.255.255.255
+    pool /Common/pcf_diego_brains
+    profiles {
+        /Common/tcp-lan-optimized { }
+    }
+    source 0.0.0.0/0
+    source-address-translation {
+        type automap
+    }
+    translate-address enabled
+    translate-port enabled
+    vlans {
+        /Common/cf_access_vlan
+    }
+    vlans-enabled
+}
+ltm virtual /Common/pcf_tcp_routers {
+    description "CF TCP Routers"
+    destination /Common/10.193.96.9:0
+    ip-protocol tcp
+    mask 255.255.255.255
+    pool /Common/pcf_tcp_routers
+    profiles {
+        /Common/tcp-lan-optimized { }
+    }
+    source 0.0.0.0/0
+    source-address-translation {
+        type automap
+    }
+    translate-address enabled
+    translate-port disabled
+    vlans {
+        /Common/cf_access_vlan
+    }
+    vlans-enabled
+}
+ltm virtual-address /Common/10.193.96.4 {
+    address 10.193.96.4
+    arp enabled
+    icmp-echo enabled
+    mask 255.255.255.255
+    traffic-group /Common/traffic-group-1
+}
+ltm virtual-address /Common/10.193.96.8 {
+    address 10.193.96.8
+    arp enabled
+    icmp-echo enabled
+    mask 255.255.255.255
+    traffic-group /Common/traffic-group-1
+}
+ltm virtual-address /Common/10.193.96.9 {
+    address 10.193.96.9
+    arp enabled
+    icmp-echo enabled
+    mask 255.255.255.255
+    traffic-group /Common/traffic-group-1
+}
+ltm monitor http /Common/pcf_gorouter_mon {
+    adaptive disabled
+    defaults-from /Common/http
+    destination *:8080
+    interval 5
+    ip-dscp 0
+    recv none
+    recv-disable none
+    send "GET /health"
+    time-until-up 0
+    timeout 16
+}
+ltm monitor http /Common/pcf_tcprouter_mon {
+    adaptive disabled
+    defaults-from /Common/http
+    destination *:80
+    interval 5
+    ip-dscp 0
+    recv none
+    recv-disable none
+    send "GET /health"
+    time-until-up 0
+    timeout 16
+}
+ltm monitor tcp /Common/pcf_diegobrains_mon {
+    adaptive disabled
+    defaults-from /Common/tcp
+    destination *:2222
+    interval 5
+    ip-dscp 0
+    recv none
+    recv-disable none
+    send none
+    time-until-up 0
+    timeout 16
+}
+ltm monitor tcp /Common/pcf_mysqlproxy_ert_mon {
+    adaptive disabled
+    defaults-from /Common/tcp
+    destination *:1936
+    interval 5
+    ip-dscp 0
+    recv none
+    recv-disable none
+    send none
+    time-until-up 0
+    timeout 16
+}
+ltm profile client-ssl /Common/cf_client_ssl {
+    alert-timeout indefinite
+    allow-dynamic-record-sizing disabled
+    allow-non-ssl disabled
+    app-service none
+    cache-size 262144
+    cache-timeout 3600
+    cert /Common/cf-haas-78.crt
+    cert-key-chain {
+        cf-haas-78-key {
+            cert /Common/cf-haas-78.crt
+            key /Common/cf-haas-78-key.key
+        }
+    }
+    chain none
+    ciphers DEFAULT
+    defaults-from /Common/clientssl
+    generic-alert enabled
+    handshake-timeout 10
+    inherit-certkeychain false
+    key /Common/cf-haas-78-key.key
+    max-active-handshakes indefinite
+    max-aggregate-renegotiation-per-minute indefinite
+    max-renegotiations-per-minute 5
+    maximum-record-size 16384
+    mod-ssl-methods disabled
+    mode enabled
+    options { dont-insert-empty-fragments }
+    passphrase none
+    peer-no-renegotiate-timeout 10
+    proxy-ssl disabled
+    proxy-ssl-passthrough disabled
+    renegotiate-max-record-delay indefinite
+    renegotiate-period indefinite
+    renegotiate-size indefinite
+    renegotiation enabled
+    secure-renegotiation require
+    server-name none
+    session-mirroring disabled
+    session-ticket disabled
+    session-ticket-timeout 0
+    sni-default false
+    sni-require false
+    ssl-sign-hash any
+    strict-resume disabled
+    unclean-shutdown enabled
+}
+net interface 1.1 {
+    media-fixed 10000T-FD
+}
+net interface 1.2 {
+    media-fixed 10000T-FD
+}
+net interface 1.3 {
+    media-fixed 10000T-FD
+}
+net route /Common/default_route {
+    gw 10.193.96.1
+    network default
+}
+net route-domain /Common/0 {
+    id 0
+    vlans {
+        /Common/http-tunnel
+        /Common/socks-tunnel
+        /Common/cf_access_vlan
+    }
+}
+net self /Common/cf_self_ip {
+    address 10.193.96.5/24
+    traffic-group /Common/traffic-group-local-only
+    vlan /Common/cf_access_vlan
+}
+net self-allow {
+    defaults {
+        igmp:0
+        ospf:0
+        pim:0
+        tcp:161
+        tcp:22
+        tcp:4353
+        tcp:443
+        tcp:53
+        udp:1026
+        udp:161
+        udp:4353
+        udp:520
+        udp:53
+    }
+}
+net stp /Common/cist {
+    interfaces {
+        1.2 {
+            external-path-cost 2000
+            internal-path-cost 2000
+        }
+    }
+    vlans {
+        /Common/cf_access_vlan
+    }
+}
+net vlan /Common/cf_access_vlan {
+    interfaces {
+        1.2 { }
+    }
+    tag 4094
+}
+net fdb tunnel /Common/http-tunnel { }
+net fdb tunnel /Common/socks-tunnel { }
+net fdb vlan /Common/cf_access_vlan { }
+net ipsec ike-daemon /Common/ikedaemon {
+    log-publisher /Common/default-ipsec-log-publisher
+}
+net tunnels tunnel /Common/http-tunnel {
+    description "Tunnel for http-explicit profile"
+    profile /Common/tcp-forward
+}
+net tunnels tunnel /Common/socks-tunnel {
+    description "Tunnel for socks profile"
+    profile /Common/tcp-forward
+}
+pem global-settings analytics { }
+security dos udp-portlist /Common/dos-udp-portlist {
+    list-type exclude-listed-ports
+}
+security firewall config-change-log {
+    log-publisher /Common/local-db-publisher
+}
+security firewall port-list /Common/_sys_self_allow_tcp_defaults {
+    ports {
+        22 { }
+        53 { }
+        161 { }
+        443 { }
+        1029-1043 { }
+        4353 { }
+    }
+}
+security firewall port-list /Common/_sys_self_allow_udp_defaults {
+    ports {
+        53 { }
+        161 { }
+        520 { }
+        1026 { }
+        4353 { }
+    }
+}
+security firewall rule-list /Common/_sys_self_allow_all {
+    rules {
+        _sys_allow_all {
+            action accept
+        }
+    }
+}
+security firewall rule-list /Common/_sys_self_allow_defaults {
+    rules {
+        _sys_allow_tcp_defaults {
+            action accept
+            ip-protocol tcp
+            destination {
+                port-lists {
+                    /Common/_sys_self_allow_tcp_defaults
+                }
+            }
+        }
+        _sys_allow_udp_defaults {
+            action accept
+            ip-protocol udp
+            destination {
+                port-lists {
+                    /Common/_sys_self_allow_udp_defaults
+                }
+            }
+        }
+        _sys_allow_ospf_defaults {
+            action accept
+            ip-protocol ospf
+        }
+        _sys_allow_pim_defaults {
+            action accept
+            ip-protocol pim
+        }
+        _sys_allow_igmp_defaults {
+            action accept
+            ip-protocol igmp
+        }
+    }
+}
+security firewall rule-list /Common/_sys_self_allow_management {
+    rules {
+        _sys_allow_ssh {
+            action accept
+            ip-protocol tcp
+            destination {
+                ports {
+                    22 { }
+                }
+            }
+        }
+        _sys_allow_web {
+            action accept
+            ip-protocol tcp
+            destination {
+                ports {
+                    443 { }
+                }
+            }
+        }
+    }
+}
+security ip-intelligence policy /Common/ip-intelligence { }
+sys db adm.block.enable {
+    value "1"
+}
+sys db gtm.peerinfototalgtms {
+    value "0"
+}
+sys db provision.1nic {
+    value "disable"
+}
+sys db provision.1nicautoconfig {
+    value "enable"
+}
+sys db provision.extramb {
+    value "0"
+}
+sys db rule.validation {
+    value "strict"
+}
+sys db systemauth.primaryadminuser {
+    value "admin"
+}
+sys db tm.allowmulticastl2destinationtraffic {
+    value "disable"
+}
+sys db tm.tcpallowinsecurerst {
+    value "disable"
+}
+sys db tmm.classallocatemetadata {
+    value "enable"
+}
+sys db tmm.coredump {
+    value "enable"
+}
+sys db tmm.dhcp.client.connection.packets.inprogress.max {
+    value "2000"
+}
+sys db tmm.dhcp.server.connection.packets.inprogress.max {
+    value "2000"
+}
+sys db tmm.gradualfileloadadjust {
+    value "enable"
+}
+sys db tmm.lb.wlcoffset {
+    value "disable"
+}
+sys db tmm.verbose {
+    value "disable"
+}
+sys db tmm.verbosecmp {
+    value "disable"
+}
+sys dns {
+    description configured-by-dhcp
+    name-servers { 10.193.96.2 }
+    search { haas-78.pez.pivotal.io }
+}
+sys feature-module cgnat {
+    disabled
+}
+sys folder / {
+    device-group none
+    hidden false
+    inherited-devicegroup false
+    inherited-traffic-group false
+    traffic-group /Common/traffic-group-1
+}
+sys folder /Common {
+    device-group none
+    hidden false
+    inherited-devicegroup true
+    inherited-traffic-group true
+    traffic-group /Common/traffic-group-1
+}
+sys folder /Common/Drafts {
+    device-group none
+    hidden false
+    inherited-devicegroup true
+    inherited-traffic-group true
+    traffic-group /Common/traffic-group-1
+}
+sys global-settings {
+    gui-setup disabled
+    hostname f5.haas-78.pez.pivotal.io
+    mgmt-dhcp disabled
+}
+sys management-dhcp /Common/sys-mgmt-dhcp-config {
+    request-options { subnet-mask broadcast-address routers domain-name domain-name-servers host-name ntp-servers }
+}
+sys management-ip 172.10.0.10/24 {
+    description configured-statically
+}
+sys management-ovsdb {
+    ca-cert-file none
+    cert-file none
+    cert-key-file none
+    disabled
+    log-level info
+}
+sys provision ltm {
+    level nominal
+}
+sys snmp {
+    agent-addresses { tcp6:161 udp6:161 }
+    communities {
+        /Common/comm-public {
+            community-name public
+            source default
+        }
+    }
+    disk-monitors {
+        /Common/root {
+            minspace 2000
+            path /
+        }
+        /Common/var {
+            minspace 10000
+            path /var
+        }
+    }
+    process-monitors {
+        /Common/bigd {
+            process bigd
+        }
+        /Common/chmand {
+            process chmand
+        }
+        /Common/httpd {
+            max-processes infinity
+            process httpd
+        }
+        /Common/mcpd {
+            process mcpd
+        }
+        /Common/sod {
+            process sod
+        }
+        /Common/tmm {
+            max-processes infinity
+            process tmm
+        }
+    }
+}
+sys ecm cloud-provider /Common/aws-ec2 {
+    description "The aws-ec2 parameters"
+    property-template {
+        account { }
+        availability-zone {
+            valid-values { a b c d }
+        }
+        instance-type {
+            valid-values { t2.micro t2.small t2.medium m3.medium m3.large m3.xlarge m3.2xlarge c3.large c3.xlarge c3.2xlarge c3.4xlarge c3.8xlarge r3.large r3.xlarge r3.2xlarge r3.4xlarge r3.8xlarge }
+        }
+        region {
+            valid-values { us-east-1 us-west-1 us-west-2 sa-east-1 eu-west-1 eu-central-1 ap-southeast-2 ap-southeast-1 ap-northeast-1 }
+        }
+    }
+}
+sys ecm cloud-provider /Common/dnet {
+    description "The dnet parameters"
+}
+sys ecm cloud-provider /Common/vsphere {
+    description "The vsphere parameters"
+    property-template {
+        cloud-host-ip { }
+        dhcp-network-name { }
+        end-point-url { }
+        node-name { }
+    }
+}
+sys file ssl-cert /Common/cf-haas-78.crt {
+    cache-path /config/filestore/files_d/Common_d/certificate_d/:Common:cf-haas-78.crt_38799_1
+    revision 1
+}
+sys file ssl-key /Common/cf-haas-78-key.key {
+    cache-path /config/filestore/files_d/Common_d/certificate_key_d/:Common:cf-haas-78-key.key_38802_1
+    revision 1
+}
+sys fpga firmware-config {
+    type standard-balanced-fpga
+}
+sys sflow global-settings http { }
+sys sflow global-settings vlan { }
+sys software update {
+    auto-check enabled
+    auto-phonehome enabled
+    frequency weekly
+}
+wom endpoint-discovery { }

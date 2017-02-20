@@ -258,7 +258,7 @@ SCFs can be edited and used as a template to replicate configurations across mul
 
 ### Sample SCFs
 
-[Recipe 1](images/sample_f5_configs/pcf-f5-recipe1-scf.txt)
+[Recipe 1](sample_f5_configs/pcf-f5-recipe1-scf.txt)
 
 ## F5 Advanced Config/Topics
 

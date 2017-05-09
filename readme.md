@@ -9,11 +9,11 @@ This Cookbook will provide information on how to configure an F5 as an LTM (Loca
 - Creating Admin users on the F5
 - Creating F5 Self IPs, VLANs, & Routes
 
-For guidance on the above topics,  please visit [F5's knowledge base](https://support.f5.com/csp/knowledge-center/software/BIG-IP?module=BIG-IP%20LTM). 
+For guidance on the above topics,  please visit [F5's knowledge base](https://support.f5.com/csp/knowledge-center/software/BIG-IP?module=BIG-IP%20LTM).
 
-F5 Version Used in this CookBook: `12.1.2`
+F5 Version Used in this CookBook: `12.1.2` and `13.0.0`
 
-**This cookbook assumes you have a functional F5 deployed**.
+**This cookbook assumes you have a functional F5 deployed. Once you have the F5 deployed follow the steps below**.
 
 ## Recipes
 
@@ -227,6 +227,8 @@ In the F5 UI (unless otherwise called out,  accept defaults for fields not refer
           - VLAN and Tunnel Traffic: `Enabled on [Your Configured F5 VPN]`
           - Source Address Translation: `Auto Map` _Note: Required to be set in 1 arm configs_
           - Default Pool: `tcprouter_pool`
+
+          **Once you have completed configuration check the Network Map located in Local Traffic Menu. Everything should be Green.**
 
 ### (2) Client terms SSL @ F5 -> F5 Re-Encrypts HTTPS -> GoRouters
 
